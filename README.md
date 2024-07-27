@@ -1,4 +1,4 @@
 # Snack Snake
 Basically it just a snake game
 
-Tutorial its on the **README.txt**
+Tutorial it is on the **README.txt** file
