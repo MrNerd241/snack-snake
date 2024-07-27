@@ -1,15 +1,16 @@
-import pygame, random
+import pygame
+import random
 from typing import Final
 
 pygame.init()
 
 difficulty = 'normal'
 
-WIDTH: Final = 1295 ; HEIGHT: Final = 650
+WIDTH: Final = 1295
+HEIGHT: Final = 650
 BLOCK_SIZE: Final = 20
 FOOD_SIZE: Final = BLOCK_SIZE * 2
 SNAKE_COLOR: Final = (0, 255, 0)
-FOOD_COLOR: Final = (random.randint(0,255+10), random.randint(0,255), random.randint(0,255+5))
 BACKGROUND_COLOR: Final = (0, 0, 0)
 BUTTON_COLOR: Final = (0, 0, 255)
 BUTTON_HOVER_COLOR: Final = (0, 100, 255)
@@ -93,7 +94,7 @@ def game_over_screen(score):
                 exit()
 
 def main():
-    global window, fullscreen, high_score
+    global window, fullscreen, high_score, FOOD_COLOR
     clock = pygame.time.Clock()
     window = pygame.display.set_mode(original_size)
     pygame.display.set_caption("Snack Snake")
@@ -116,6 +117,7 @@ def main():
 
         food_x = round(random.randrange(0, WIDTH - FOOD_SIZE) / BLOCK_SIZE) * BLOCK_SIZE
         food_y = round(random.randrange(0, HEIGHT - FOOD_SIZE) / BLOCK_SIZE) * BLOCK_SIZE
+        FOOD_COLOR = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         score = 0
 
         running = True
@@ -140,7 +142,7 @@ def main():
                         snake_speed_x = 0
                     elif event.key == pygame.K_p:
                         paused = not paused
-                    elif event.key == pygame.K_f:  
+                    elif event.key == pygame.K_f:
                         fullscreen = not fullscreen
                         if fullscreen:
                             window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -164,6 +166,7 @@ def main():
             if snake_x in range(food_x, food_x + FOOD_SIZE) and snake_y in range(food_y, food_y + FOOD_SIZE):
                 food_x = round(random.randrange(0, WIDTH - FOOD_SIZE) / BLOCK_SIZE) * BLOCK_SIZE
                 food_y = round(random.randrange(0, HEIGHT - FOOD_SIZE) / BLOCK_SIZE) * BLOCK_SIZE
+                FOOD_COLOR = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
                 snake_length += 1
                 score += 5
                 if score == 100:
