@@ -170,7 +170,7 @@ def main():
                 snake_length += 1
                 score += 5
                 if score == 100:
-                    score *= score
+                    score *= 2
 
             for segment in snake_list[:-1]:
                 if segment == snake_head:
